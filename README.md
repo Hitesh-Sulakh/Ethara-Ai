@@ -180,9 +180,10 @@ docker-compose build backend
 
 | Service | URL |
 |---|---|
-| **Frontend** | _TBD after deployment_ |
-| **Backend API** | _TBD after deployment_ |
-| **Docker Hub Image** | _TBD after push_ |
+| **Frontend** | [https://frontend-6jb8hqsln-hitesh2233.vercel.app](https://frontend-6jb8hqsln-hitesh2233.vercel.app) |
+| **Backend API** | [https://ethara-ai-backend-nsvb.onrender.com](https://ethara-ai-backend-nsvb.onrender.com) |
+| **API Docs** | [https://ethara-ai-backend-nsvb.onrender.com/docs](https://ethara-ai-backend-nsvb.onrender.com/docs) |
+| **Docker Hub Image** | [https://hub.docker.com/r/hiteshsulakh/ethara-ai-backend](https://hub.docker.com/r/hiteshsulakh/ethara-ai-backend) |
 
 ---
 
