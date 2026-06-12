@@ -186,6 +186,61 @@ docker-compose build backend
 
 ---
 
+## ⚠️ Manual Deployment (no CI)
+
+If you prefer to deploy manually without using GitHub Actions, follow these exact steps.
+
+### 1) Build & push backend Docker image to Docker Hub
+Replace `hiteshsulakh` with your Docker Hub username if different.
+```bash
+# from project root
+docker build -t hiteshsulakh/ethara-ai-backend:latest ./backend
+docker login --username hiteshsulakh
+docker push hiteshsulakh/ethara-ai-backend:latest
+```
+
+### 2) Create a Postgres database on Render (optional)
+You can use Render Managed Postgres or supply an external Postgres URL.
+On Render dashboard: New → Databases → PostgreSQL → choose plan (free) → create.
+Copy the provided connection string (format: `postgres://user:pass@host:port/dbname`).
+
+### 3) Deploy backend on Render from Docker Hub image
+1. Log in to https://dashboard.render.com
+2. Click **New → Web Service**
+3. Choose **Private Docker Image (Docker Hub)** or the option to deploy from an image
+4. Enter the image name: `hiteshsulakh/ethara-ai-backend:latest`
+5. Set the **Start Command** (if Render asks): `uvicorn app.main:app --host 0.0.0.0 --port 8000`
+6. Add environment variables under **Environment**:
+	- `DATABASE_URL` = the Postgres connection string from step 2 (or your existing DB)
+	- `CORS_ORIGINS` = `http://localhost:3000,http://localhost:5173` or your frontend URL
+7. Set the **Health Check Path** to `/api/health` and port to `8000` if requested.
+8. Create the service — Render will pull the image and start the container.
+
+### 4) Deploy frontend to Vercel (manual)
+Install Vercel CLI and deploy from the `frontend` folder.
+```bash
+cd frontend
+npm ci
+npm run build
+# login (interactive) or use --token
+vercel login
+vercel --prod --confirm
+```
+During the deploy, set `VITE_API_URL` to your Render backend URL (e.g. `https://ethara-ai-pnpi.onrender.com`).
+
+### 5) Verify
+- Backend health:
+```bash
+curl -sS https://<YOUR_RENDER_URL>/api/health | jq
+```
+- Frontend: open the Vercel URL in a browser and verify features (Products, Customers, Orders) work and API calls succeed.
+
+### Notes & troubleshooting
+- If Render fails to pull the image, ensure the image is public or provide Docker Hub credentials in Render when using a private image.
+- If the backend cannot connect to Postgres, re-check `DATABASE_URL` and network/access rules.
+- If CORS errors appear in the browser console, add your frontend origin to `CORS_ORIGINS`.
+
+
 ## 📄 License
 
 This project is part of the Ethara AI technical assessment.

@@ -15,11 +15,11 @@ export default function Sidebar({ isOpen, onClose }) {
       <aside className={`sidebar ${isOpen ? 'open' : ''}`}>
         <div className="sidebar-logo">
           <div className="sidebar-logo-icon">
-            <IconBolt size={22} color="#fff" />
+            <IconBolt size={22} color="var(--accent-teal)" />
           </div>
           <div>
-            <h2>Ethara AI</h2>
-            <span>Inventory System</span>
+            <h2>Aurora Inventory</h2>
+            <span className="sidebar-sub">Stock & Orders</span>
           </div>
         </div>
         <nav className="sidebar-nav">
