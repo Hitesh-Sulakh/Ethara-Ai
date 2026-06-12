@@ -1,0 +1,310 @@
+/* ── Buttons ─────────────────────────────────────────────────── */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  padding: 10px 20px;
+  border-radius: var(--radius-md);
+  font-size: 0.875rem;
+  font-weight: 600;
+  transition: all var(--transition-fast);
+  white-space: nowrap;
+  border: none;
+  cursor: pointer;
+}
+
+.btn--primary {
+  background: var(--gradient-blue);
+  color: white;
+  box-shadow: 0 2px 8px var(--accent-blue-glow);
+}
+
+.btn--primary:hover {
+  box-shadow: 0 4px 16px var(--accent-blue-glow);
+  transform: translateY(-1px);
+}
+
+.btn--danger {
+  background: var(--gradient-rose);
+  color: white;
+  box-shadow: 0 2px 8px var(--accent-rose-glow);
+}
+
+.btn--danger:hover {
+  box-shadow: 0 4px 16px var(--accent-rose-glow);
+  transform: translateY(-1px);
+}
+
+.btn--ghost {
+  background: transparent;
+  color: var(--text-secondary);
+  border: 1px solid var(--border-subtle);
+}
+
+.btn--ghost:hover {
+  color: var(--text-primary);
+  border-color: var(--border-medium);
+  background: rgba(255, 255, 255, 0.03);
+}
+
+.btn--sm {
+  padding: 6px 14px;
+  font-size: 0.8rem;
+}
+
+.btn:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+  transform: none !important;
+}
+
+/* ── Modal ───────────────────────────────────────────────────── */
+.modal-overlay {
+  position: fixed;
+  inset: 0;
+  background: var(--bg-modal-overlay);
+  backdrop-filter: blur(4px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+  padding: 20px;
+  animation: fadeIn 0.2s ease both;
+}
+
+.modal {
+  background: var(--bg-secondary);
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-xl);
+  width: 100%;
+  max-width: 560px;
+  max-height: 90vh;
+  overflow-y: auto;
+  box-shadow: var(--shadow-lg);
+  animation: scaleIn 0.25s ease both;
+}
+
+.modal-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 24px 28px 0;
+}
+
+.modal-header h2 {
+  font-size: 1.2rem;
+  font-weight: 700;
+  color: var(--text-white);
+}
+
+.modal-close {
+  width: 36px;
+  height: 36px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: var(--radius-sm);
+  background: transparent;
+  border: 1px solid var(--border-subtle);
+  color: var(--text-secondary);
+  font-size: 1.2rem;
+  cursor: pointer;
+  transition: all var(--transition-fast);
+}
+
+.modal-close:hover {
+  background: rgba(244, 63, 94, 0.1);
+  border-color: var(--accent-rose);
+  color: var(--accent-rose);
+}
+
+.modal-body {
+  padding: 24px 28px;
+}
+
+.modal-footer {
+  display: flex;
+  justify-content: flex-end;
+  gap: 12px;
+  padding: 0 28px 24px;
+}
+
+/* ── Toast Notifications ─────────────────────────────────────── */
+.toast-container {
+  position: fixed;
+  top: 20px;
+  right: 20px;
+  z-index: 2000;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  pointer-events: none;
+}
+
+.toast {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 14px 20px;
+  background: var(--bg-secondary);
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-md);
+  box-shadow: var(--shadow-lg);
+  min-width: 300px;
+  max-width: 440px;
+  pointer-events: auto;
+  animation: toastSlide 0.35s ease both;
+}
+
+.toast--success { border-left: 3px solid var(--accent-emerald); }
+.toast--error   { border-left: 3px solid var(--accent-rose); }
+.toast--info    { border-left: 3px solid var(--accent-blue); }
+
+.toast-icon {
+  font-size: 1.1rem;
+  flex-shrink: 0;
+}
+
+.toast--success .toast-icon { color: var(--accent-emerald); }
+.toast--error .toast-icon   { color: var(--accent-rose); }
+.toast--info .toast-icon    { color: var(--accent-blue); }
+
+.toast-message {
+  flex: 1;
+  font-size: 0.85rem;
+  color: var(--text-primary);
+  line-height: 1.4;
+}
+
+.toast-dismiss {
+  background: transparent;
+  border: none;
+  color: var(--text-muted);
+  cursor: pointer;
+  font-size: 1rem;
+  padding: 4px;
+  transition: color var(--transition-fast);
+}
+
+.toast-dismiss:hover {
+  color: var(--text-primary);
+}
+
+/* ── Confirm Dialog ──────────────────────────────────────────── */
+.confirm-body {
+  text-align: center;
+  padding: 8px 0;
+}
+
+.confirm-icon {
+  font-size: 3rem;
+  margin-bottom: 16px;
+}
+
+.confirm-title {
+  font-size: 1.1rem;
+  font-weight: 600;
+  color: var(--text-white);
+  margin-bottom: 8px;
+}
+
+.confirm-message {
+  font-size: 0.9rem;
+  color: var(--text-secondary);
+  line-height: 1.5;
+}
+
+/* ── Loading Skeleton ────────────────────────────────────────── */
+.skeleton {
+  background: linear-gradient(90deg, var(--bg-card) 25%, rgba(255,255,255,0.04) 50%, var(--bg-card) 75%);
+  background-size: 400% 100%;
+  animation: shimmer 1.5s ease infinite;
+  border-radius: var(--radius-sm);
+}
+
+.skeleton-row {
+  height: 52px;
+  margin-bottom: 4px;
+}
+
+.skeleton-card {
+  height: 140px;
+  border-radius: var(--radius-lg);
+}
+
+/* ── Order Details ───────────────────────────────────────────── */
+.order-details-card {
+  background: var(--glass-bg);
+  backdrop-filter: blur(var(--glass-blur));
+  border: 1px solid var(--glass-border);
+  border-radius: var(--radius-lg);
+  padding: 28px;
+  margin-bottom: 24px;
+  animation: fadeIn 0.4s ease both;
+}
+
+.order-details-card h3 {
+  font-size: 1rem;
+  font-weight: 600;
+  color: var(--text-white);
+  margin-bottom: 20px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.order-meta {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+  gap: 20px;
+}
+
+.order-meta-item {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.order-meta-label {
+  font-size: 0.75rem;
+  font-weight: 600;
+  color: var(--text-muted);
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+}
+
+.order-meta-value {
+  font-size: 1rem;
+  font-weight: 600;
+  color: var(--text-primary);
+}
+
+.order-total {
+  font-size: 1.5rem;
+  font-weight: 800;
+  color: var(--accent-emerald-light);
+}
+
+/* ── Order Form – Item Rows ──────────────────────────────────── */
+.order-items-list {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  margin-bottom: 16px;
+}
+
+.order-item-row {
+  display: grid;
+  grid-template-columns: 1fr 120px 40px;
+  gap: 12px;
+  align-items: end;
+}
+
+.order-item-row .btn-icon {
+  margin-bottom: 20px;
+}
+
+.add-item-btn {
+  align-self: flex-start;
+}
